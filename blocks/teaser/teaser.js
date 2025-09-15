@@ -39,6 +39,9 @@ export default function decorate(block) {
 /* This JavaScript makes minor adjustments to the block's DOM */
 
   /* Common treatments for all options */
+  console.log("=====");
+  console.log("teaser block");
+  console.log(block);
   block.querySelector(':scope > div:last-child').classList.add('content');
   block.querySelector('h1,h2,h3,h4,h5,h6').classList.add('title');
   block.querySelector('img').classList.add('image');
@@ -61,4 +64,5 @@ export default function decorate(block) {
   }
 
   addEventListeners(block);
+  console.log("end =====");
 }
