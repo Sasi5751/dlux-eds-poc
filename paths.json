@@ -1,0 +1,10 @@
+{
+  "mappings": [
+    "/content/edswknd/:/",
+    "/content/edswknd/configuration:/.helix/config.json",
+    "/content/edswknd/metadata:/metadata.json"
+  ],
+  "includes": [
+    "/content/edswknd/"
+  ]
+}
