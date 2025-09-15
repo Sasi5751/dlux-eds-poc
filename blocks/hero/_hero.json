@@ -40,6 +40,32 @@
           "value": "",
           "label": "Text",
           "valueType": "string"
+        },
+        {
+          "component": "richtext",
+          "name": "textContent_title",
+          "label": "Text",
+          "valueType": "string",
+          "required": true
+        },
+        {
+          "component": "richtext",
+          "name": "textContent_description",
+          "label": "Text",
+          "valueType": "string",
+          "required": true
+        },
+        {
+          "component": "aem-content",
+          "name": "textContent_cta",
+          "label": "CTA",
+          "valueType": "string"
+        },
+        {
+          "component": "text",
+          "name": "textContent_ctaText",
+          "label": "CTA label",
+          "valueType": "string"
         }
       ]
     }
