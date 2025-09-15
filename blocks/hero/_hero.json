@@ -44,14 +44,14 @@
         {
           "component": "richtext",
           "name": "textContent_title",
-          "label": "Text",
+          "label": "Title",
           "valueType": "string",
           "required": true
         },
         {
           "component": "richtext",
           "name": "textContent_description",
-          "label": "Text",
+          "label": "Description",
           "valueType": "string",
           "required": true
         },
