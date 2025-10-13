@@ -1,10 +1,10 @@
 {
   "mappings": [
-    "/content/edswknd/:/",
-    "/content/edswknd/configuration:/.helix/config.json",
-    "/content/edswknd/metadata:/metadata.json"
+    "/content/dlux-eds-poc/:/",
+    "/content/dlux-eds-poc/configuration:/.helix/config.json",
+    "/content/dlux-eds-poc/metadata:/metadata.json"
   ],
   "includes": [
-    "/content/edswknd/"
+    "/content/dlux-eds-poc/"
   ]
 }
