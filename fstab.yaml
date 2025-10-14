@@ -1,5 +1,6 @@
 mountpoints:
   /:
     url: "https://author-p162613-e1741353.adobeaemcloud.com/bin/franklin.delivery/VishnuRachamallu/eds-wknd/main"
+  /doc:
+    url: "https://main--eds-wknd--vishnurachamallu.aem.page/doc"
     type: "markup"
-    suffix: ".html"
