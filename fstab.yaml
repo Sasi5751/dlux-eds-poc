@@ -2,5 +2,5 @@ mountpoints:
   /:
     url: "https://author-p162613-e1741353.adobeaemcloud.com/bin/franklin.delivery/Sasi5751/dlux-eds-poc/main"
   /doc:
-    url: "https://main--eds-wknd--vishnurachamallu.aem.page/doc"
+    url: "https://main--dlux-eds-poc--Sasi5751.aem.page/doc"
     type: "markup"
