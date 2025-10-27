@@ -1,6 +1,5 @@
 mountpoints:
   /:
     url: "https://author-p162613-e1741353.adobeaemcloud.com/bin/franklin.delivery/Sasi5751/dlux-eds-poc/main"
-  /doc:
-    url: "https://drive.google.com/drive/u/1/folders/1Dtmzv1hYMJgORWRjwgXMKCdvCF_DCf4o?hl=en"
     type: "markup"
+    suffix: ".html"
