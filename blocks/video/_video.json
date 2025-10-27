@@ -1,0 +1,81 @@
+{
+  "definitions": [{
+    "title": "Video",
+    "id": "video",
+    "plugins": {
+      "xwalk": {
+        "page": {
+          "resourceType": "core/franklin/components/block/v1/block",
+          "template": {
+            "name": "Video",
+            "model": "video",
+            "videoUrl": "https://www.youtube.com/embed/dQw4w9WgXcQ",
+            "videoAlt": "Sample video alt text",
+            "textContent_text": "<h2>Enter a title</h2><p>...And body text here!</p>",
+            "textContent_cta": "/",
+            "textContent_ctaText": "Click me!"
+          }
+        }
+      }
+    }
+  }],
+  "models": [
+    {
+      "id": "video",
+      "fields": [
+        {
+          "component": "select",
+          "name": "classes",
+          "value": "",
+          "label": "Video options",
+          "description": "",
+          "valueType": "string",
+          "options": [
+            {
+              "name": "Default",
+              "value": ""
+            },
+            {
+              "name": "Side-by-side",
+              "value": "side-by-side"
+            }
+          ]
+        },
+        {
+          "component": "text",
+          "name": "videoUrl",
+          "label": "YouTube Embed URL",
+          "valueType": "string",
+          "required": true
+        },
+        {
+          "component": "text",
+          "name": "videoAlt",
+          "label": "Video alt text",
+          "valueType": "string",
+          "required": true
+        },
+        {
+          "component": "richtext",
+          "name": "textContent_text",
+          "label": "Text",
+          "valueType": "string",
+          "required": true
+        },
+        {
+          "component": "aem-content",
+          "name": "textContent_cta",
+          "label": "CTA",
+          "valueType": "string"
+        },
+        {
+          "component": "text",
+          "name": "textContent_ctaText",
+          "label": "CTA label",
+          "valueType": "string"
+        }
+      ]
+    }
+  ],
+  "filters": []
+}
