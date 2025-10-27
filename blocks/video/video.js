@@ -57,13 +57,12 @@ export default function decorate(block) {
       iframe.src = `https://www.youtube.com/embed/${videoId}?autoplay=1`;
       iframe.title = alt || "YouTube video";
       iframe.className = 'video-embed';
-      iframe.setAttribute('allowfullscreen', 'true');
-      iframe.setAttribute('frameborder', '0');
-      iframe.style.width = '100%';
-      iframe.style.height = '100%';
+      iframe.width = '100%';
+      iframe.height = '100%';
+      iframe.allow = 'accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture';
+      iframe.allowFullscreen = true;
       wrapper.replaceWith(iframe);
     });
-
   }
 
   // Side-by-side styling
