@@ -264,16 +264,16 @@
       },
       {
         "component": "text",
-        "valueType": "string",
         "name": "videoUrl",
         "label": "YouTube Embed URL",
+        "valueType": "string",
         "required": true
       },
       {
         "component": "text",
-        "valueType": "string",
         "name": "videoAlt",
         "label": "Video alt text",
+        "valueType": "string",
         "required": true
       },
       {

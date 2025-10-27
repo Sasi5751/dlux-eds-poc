@@ -9,7 +9,7 @@
           "template": {
             "name": "Video",
             "model": "video",
-            "videoUrl": "https://www.youtube.com/embed/dQw4w9WgXcQ",
+            "videoUrl": "https://www.youtube.com/embed/2_fXhIOFb3Q",
             "videoAlt": "Sample video alt text",
             "textContent_text": "<h2>Enter a title</h2><p>...And body text here!</p>",
             "textContent_cta": "/",
