@@ -12,8 +12,7 @@
               "model": "imageleftright",
               "desktopImagePath": "content-at-scale.png",
               "altText": "Sample alt text",
-              "title": "Start planning today",
-              "text": "We know there’s a lot to think about when it comes to planning a funeral. Our free funeral planner can help guide you through the steps to make it easier for you.",
+              "textContent_text": "We know there’s a lot to think about when it comes to planning a funeral. Our free funeral planner can help guide you through the steps to make it easier for you.",
               "textContent_cta": "/",
               "textContent_ctaText": "Click me!",
               "orientation": "image-left",
@@ -73,15 +72,11 @@
           "valueType": "string"
         },
         {
-          "component": "text",
-          "name": "title",
-          "label": "Title",
-          "valueType": "string"
-        },
-        {
           "component": "richtext",
-          "name": "text",
-          "label": "Text"
+          "name": "textContent_text",
+          "label": "Text",
+          "valueType": "string",
+          "required": true
         },
         {
           "component": "aem-content",

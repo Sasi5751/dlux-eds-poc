@@ -233,15 +233,11 @@
         "valueType": "string"
       },
       {
-        "component": "text",
-        "name": "title",
-        "label": "Title",
-        "valueType": "string"
-      },
-      {
         "component": "richtext",
-        "name": "text",
-        "label": "Text"
+        "name": "textContent_text",
+        "label": "Text",
+        "valueType": "string",
+        "required": true
       },
       {
         "component": "aem-content",
