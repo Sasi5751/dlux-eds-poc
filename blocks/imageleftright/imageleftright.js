@@ -15,15 +15,21 @@ export default function decorate(block) {
     block.append(contentDiv);
   }
 
-  // Move image to first div and content to second div
-  // Look for img, title, text, button in block children
+  // Place the image in imgDiv and the content in contentDiv
   block.querySelectorAll('img').forEach(img => imgDiv.appendChild(img));
   block.querySelectorAll('h1, h2, h3, h4, h5, h6, p, a, button').forEach(el => {
     if (!imgDiv.contains(el)) contentDiv.appendChild(el);
   });
 
-  // Optional: Remove any direct children except imageDiv/contentDiv
-  [...block.children].forEach(child => {
-    if (child !== imgDiv && child !== contentDiv) child.remove();
-  });
+  // Swap the order if layout is image-right
+  const layoutOption = block.classList.contains('image-right') || block.dataset.orientation === 'image-right';
+  if (layoutOption) {
+    if (block.firstElementChild !== contentDiv) {
+      block.insertBefore(contentDiv, imgDiv);
+    }
+  } else {
+    if (block.firstElementChild !== imgDiv) {
+      block.insertBefore(imgDiv, contentDiv);
+    }
+  }
 }
