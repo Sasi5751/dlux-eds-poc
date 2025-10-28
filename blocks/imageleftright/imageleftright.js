@@ -1,28 +1,32 @@
 export default function decorate(block) {
-  // Find the first child - container holding image div and potentially empty divs
-  const firstChild = block.firstElementChild;
-
-  // Remove all empty divs inside the firstChild except divs containing images
-  if (firstChild) {
-    const divs = [...firstChild.children];
-    divs.forEach(div => {
-      // Check if div or its descendants contain an <img> tag
-      const hasImg = div.querySelector && div.querySelector('img');
-      if (!hasImg) {
-        div.remove();
+  // Remove empty divs recursively, except div containing images
+  function cleanEmptyDivs(parent) {
+    const children = [...parent.children];
+    children.forEach(child => {
+      if (child.tagName === 'DIV') {
+        // If no image descendant and no non-empty text, remove
+        const hasImg = !!child.querySelector('img');
+        const hasText = child.textContent.trim().length > 0;
+        if (!hasImg && !hasText) {
+          child.remove();
+        } else {
+          // recursive clean deeper
+          cleanEmptyDivs(child);
+        }
       }
     });
   }
+  cleanEmptyDivs(block);
 
-  // Now find or create image div only if image exists
+  // Find or create .imageleftright-image container
   let imgDiv = block.querySelector('.imageleftright-image');
-  if (imgDiv && !imgDiv.querySelector('img')) {
-    // Remove empty image div to prevent extra space
-    imgDiv.remove();
-    imgDiv = null;
+  if (!imgDiv) {
+    imgDiv = document.createElement('div');
+    imgDiv.className = 'imageleftright-image';
+    block.prepend(imgDiv);
   }
 
-  // Find content div or create it
+  // Find or create .imageleftright-content container
   let contentDiv = block.querySelector('.imageleftright-content');
   if (!contentDiv) {
     contentDiv = document.createElement('div');
@@ -30,33 +34,30 @@ export default function decorate(block) {
     block.append(contentDiv);
   }
 
-  // If no imgDiv but image exists inside firstChild, create image div and insert image
-  if (!imgDiv && firstChild) {
-    const img = firstChild.querySelector('img');
-    if (img) {
-      imgDiv = document.createElement('div');
-      imgDiv.className = 'imageleftright-image';
-      imgDiv.appendChild(img);
-      // Insert at start of the block
-      block.insertBefore(imgDiv, contentDiv);
-    }
+  // Move the image (first img found anywhere) into imgDiv
+  const allImgs = block.querySelectorAll('img');
+  if (allImgs.length > 0) {
+    imgDiv.appendChild(allImgs[0]);
   }
 
-  // Move content elements into contentDiv (skip image container)
+  // Move all non-image elements into contentDiv
   const allChildren = [...block.children];
   allChildren.forEach(child => {
     if (child !== imgDiv && child !== contentDiv) {
-      // Move text content to contentDiv
-      const nodes = child.querySelectorAll('h1,h2,h3,h4,h5,h6,p,a,button');
-      nodes.forEach(node => contentDiv.appendChild(node));
+      const relevantNodes = child.querySelectorAll('h1,h2,h3,h4,h5,h6,p,a,button');
+      relevantNodes.forEach(n => contentDiv.appendChild(n));
       // Remove leftover empty containers
-      if (child.children.length === 0) child.remove();
+      if (child.children.length === 0) {
+        child.remove();
+      }
     }
   });
 
-  // Handle orientation from data attribute or existing class
-  const orientation = block.classList.contains('image-right') || block.dataset.orientation === 'image-right';
-  if (orientation) {
+  // Find orientation text inside contentDiv and toggle class on block
+  const orientationEl = contentDiv.querySelector('[data-aue-prop="orientation"]');
+  const orientation = orientationEl ? orientationEl.textContent.trim() : '';
+
+  if (orientation.toLowerCase() === 'image-right') {
     block.classList.add('image-right');
   } else {
     block.classList.remove('image-right');
