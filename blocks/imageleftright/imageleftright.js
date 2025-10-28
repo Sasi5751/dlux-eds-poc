@@ -1,37 +1,29 @@
 export default function decorate(block) {
-  // Find containers
-  const imgContainer = block.querySelector('.cmp-image-left-right__image');
-  const contentContainer = block.querySelector('.cmp-image-left-right__content');
+  // Find or create child divs for image and content
+  let imgDiv = block.querySelector('.imageleftright-image');
+  let contentDiv = block.querySelector('.imageleftright-content');
 
-  // Populate image
-  if (imgContainer && block.dataset.desktopImagePath) {
-    const img = document.createElement('img');
-    img.src = block.dataset.desktopImagePath;
-    img.alt = block.dataset.altText || '';
-    img.className = 'cmp-image-left-right__image-img img-fluid';
-    imgContainer.appendChild(img);
+  // If not present, create them
+  if (!imgDiv) {
+    imgDiv = document.createElement('div');
+    imgDiv.className = 'imageleftright-image';
+    block.prepend(imgDiv);
+  }
+  if (!contentDiv) {
+    contentDiv = document.createElement('div');
+    contentDiv.className = 'imageleftright-content';
+    block.append(contentDiv);
   }
 
-  // Populate content
-  if (contentContainer) {
-    if (block.dataset.title) {
-      const title = document.createElement('h2');
-      title.textContent = block.dataset.title;
-      title.className = 'cmp-image-left-right__title';
-      contentContainer.appendChild(title);
-    }
-    if (block.dataset.text) {
-      const text = document.createElement('p');
-      text.textContent = block.dataset.text;
-      text.className = 'cmp-image-left-right__text';
-      contentContainer.appendChild(text);
-    }
-    if (block.dataset.ctaText && block.dataset.ctaUrl) {
-      const button = document.createElement('a');
-      button.href = block.dataset.ctaUrl;
-      button.textContent = block.dataset.ctaText;
-      button.className = 'cmp-image-left-right__button';
-      contentContainer.appendChild(button);
-    }
-  }
+  // Move image to first div and content to second div
+  // Look for img, title, text, button in block children
+  block.querySelectorAll('img').forEach(img => imgDiv.appendChild(img));
+  block.querySelectorAll('h1, h2, h3, h4, h5, h6, p, a, button').forEach(el => {
+    if (!imgDiv.contains(el)) contentDiv.appendChild(el);
+  });
+
+  // Optional: Remove any direct children except imageDiv/contentDiv
+  [...block.children].forEach(child => {
+    if (child !== imgDiv && child !== contentDiv) child.remove();
+  });
 }
