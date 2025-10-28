@@ -186,6 +186,66 @@
     ]
   },
   {
+    "id": "sidebyside",
+    "fields": [
+      {
+        "component": "select",
+        "name": "swap",
+        "label": "Layout Option",
+        "valueType": "string",
+        "options": [
+          {
+            "name": "Image Left, Content Right",
+            "value": ""
+          },
+          {
+            "name": "Image Right, Content Left",
+            "value": "swap"
+          }
+        ]
+      },
+      {
+        "component": "reference",
+        "name": "image",
+        "label": "Image",
+        "valueType": "string",
+        "multi": false
+      },
+      {
+        "component": "text",
+        "name": "imageAlt",
+        "label": "Image Alt Text",
+        "valueType": "string",
+        "required": true
+      },
+      {
+        "component": "text",
+        "name": "contentTitle",
+        "label": "Title",
+        "valueType": "string",
+        "required": true
+      },
+      {
+        "component": "richtext",
+        "name": "contentBody",
+        "label": "Body",
+        "valueType": "string"
+      },
+      {
+        "component": "aem-content",
+        "name": "ctaUrl",
+        "label": "CTA URL",
+        "valueType": "string"
+      },
+      {
+        "component": "text",
+        "name": "ctaText",
+        "label": "CTA Text",
+        "valueType": "string"
+      }
+    ]
+  },
+  {
     "id": "teaser",
     "fields": [
       {
