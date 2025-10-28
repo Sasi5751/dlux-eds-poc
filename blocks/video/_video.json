@@ -10,7 +10,7 @@
             "name": "Video",
             "model": "video",
             "videoUrl": "https://www.youtube.com/embed/2_fXhIOFb3Q",
-            "videoAlt": "Sample video alt text",
+            "videoAlt": "Sample video alt text"
           }
         }
       }
