@@ -1,27 +1,37 @@
 export default function decorate(block) {
-  // Apply orientation and background color classes
-  const orientation = block.dataset.orientation || 'image-left';
-  const backgroundColor = block.dataset.backgroundColor || 'light';
-  const top = block.dataset.top === 'true';
-  const bottom = block.dataset.bottom === 'true';
+  // Find containers
+  const imgContainer = block.querySelector('.cmp-image-left-right__image');
+  const contentContainer = block.querySelector('.cmp-image-left-right__content');
 
-  block.classList.add('cmp-image-left-right-wrapper');
-  block.classList.add(`cmp-image-left-right-no-top-padding-${top ? 'yes' : 'no'}`);
-  block.classList.add(`cmp-image-left-right-no-bottom-padding-${bottom ? 'yes' : 'no'}`);
+  // Populate image
+  if (imgContainer && block.dataset.desktopImagePath) {
+    const img = document.createElement('img');
+    img.src = block.dataset.desktopImagePath;
+    img.alt = block.dataset.altText || '';
+    img.className = 'cmp-image-left-right__image-img img-fluid';
+    imgContainer.appendChild(img);
+  }
 
-  // Find main container
-  const container = block.querySelector('.cmp-image-left-right') || document.createElement('div');
-  container.className = `cmp-image-left-right gp-radius-container cmp-image-left-right--${orientation} cmp-image-left-right--${backgroundColor}`;
-
-  // Move image and content into the container
-  const imgDiv = block.querySelector('.cmp-image-left-right__image') || document.createElement('div');
-  imgDiv.className = 'cmp-image-left-right__image img-fluid';
-
-  const contentDiv = block.querySelector('.cmp-image-left-right__content') || document.createElement('div');
-  contentDiv.className = 'cmp-image-left-right__content';
-
-  container.appendChild(imgDiv);
-  container.appendChild(contentDiv);
-  block.innerHTML = '';
-  block.appendChild(container);
+  // Populate content
+  if (contentContainer) {
+    if (block.dataset.title) {
+      const title = document.createElement('h2');
+      title.textContent = block.dataset.title;
+      title.className = 'cmp-image-left-right__title';
+      contentContainer.appendChild(title);
+    }
+    if (block.dataset.text) {
+      const text = document.createElement('p');
+      text.textContent = block.dataset.text;
+      text.className = 'cmp-image-left-right__text';
+      contentContainer.appendChild(text);
+    }
+    if (block.dataset.ctaText && block.dataset.ctaUrl) {
+      const button = document.createElement('a');
+      button.href = block.dataset.ctaUrl;
+      button.textContent = block.dataset.ctaText;
+      button.className = 'cmp-image-left-right__button';
+      contentContainer.appendChild(button);
+    }
+  }
 }
