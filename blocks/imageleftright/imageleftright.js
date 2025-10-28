@@ -1,23 +1,35 @@
-export default function decorate(block) {
-  const imgDiv = block.querySelector('.imageleftright-image') || document.createElement('div');
-  imgDiv.classList.add('imageleftright-image');
+// /blocks/imageleftright/imageleftright.js
 
-  const contentDiv = block.querySelector('.imageleftright-content') || document.createElement('div');
-  contentDiv.classList.add('imageleftright-content');
+export default function decorate(block) {
+  // Find or create image and content containers
+  let imgDiv = block.querySelector('.imageleftright-image');
+  let contentDiv = block.querySelector('.imageleftright-content');
+
+  if (!imgDiv) {
+    imgDiv = document.createElement('div');
+    imgDiv.className = 'imageleftright-image';
+    block.prepend(imgDiv);
+  }
+  if (!contentDiv) {
+    contentDiv = document.createElement('div');
+    contentDiv.className = 'imageleftright-content';
+    block.append(contentDiv);
+  }
 
   // Clear previous content
   imgDiv.innerHTML = '';
   contentDiv.innerHTML = '';
 
-  // Populate image
+  // Populate image container with img element if image path exists
   if (block.dataset.desktopImagePath) {
     const img = document.createElement('img');
     img.src = block.dataset.desktopImagePath;
     img.alt = block.dataset.altText || '';
+    img.className = 'cmp-image-left-right__image-img img-fluid'; // match your CSS class naming if needed
     imgDiv.appendChild(img);
   }
 
-  // Populate content
+  // Populate content container with title, text, and CTA
   if (block.dataset.title) {
     const titleEl = document.createElement('h2');
     titleEl.textContent = block.dataset.title;
@@ -32,22 +44,18 @@ export default function decorate(block) {
     const cta = document.createElement('a');
     cta.href = block.dataset.textContent_cta;
     cta.textContent = block.dataset.textContent_ctaText;
-    cta.classList.add('button');
+    cta.className = 'button';
     contentDiv.appendChild(cta);
   }
 
-  // Append containers to block
-  if (!block.contains(imgDiv)) block.prepend(imgDiv);
-  if (!block.contains(contentDiv)) block.append(contentDiv);
-
-  // Layout based on orientation
+  // Set layout orientation class on block
   if (block.dataset.orientation === 'image-right') {
     block.classList.add('image-right');
   } else {
     block.classList.remove('image-right');
   }
 
-  // Optional: Apply background color classes if used in CSS
+  // Optional: handle background color class
   if (block.dataset.backgroundColor) {
     block.classList.add(`background-${block.dataset.backgroundColor}`);
   }
