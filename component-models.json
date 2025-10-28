@@ -227,12 +227,6 @@
         "valueType": "string"
       },
       {
-        "component": "reference",
-        "name": "tabletImagePath",
-        "label": "Image (Tablet)",
-        "valueType": "string"
-      },
-      {
         "component": "text",
         "name": "altText",
         "label": "Image Alt Text",
@@ -251,27 +245,15 @@
       },
       {
         "component": "aem-content",
-        "name": "ctaUrl",
-        "label": "CTA URL",
+        "name": "textContent_cta",
+        "label": "CTA",
         "valueType": "string"
       },
       {
         "component": "text",
-        "name": "ctaText",
-        "label": "CTA Text",
+        "name": "textContent_ctaText",
+        "label": "CTA label",
         "valueType": "string"
-      },
-      {
-        "component": "checkbox",
-        "name": "top",
-        "label": "Remove Top Padding",
-        "valueType": "boolean"
-      },
-      {
-        "component": "checkbox",
-        "name": "bottom",
-        "label": "Remove Bottom Padding",
-        "valueType": "boolean"
       }
     ]
   },
