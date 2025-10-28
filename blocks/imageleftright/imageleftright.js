@@ -1,16 +1,14 @@
 export default function decorate(block) {
-  // Remove empty divs recursively, except div containing images
+  // Recursively remove empty divs, except if they contain images
   function cleanEmptyDivs(parent) {
     const children = [...parent.children];
     children.forEach(child => {
       if (child.tagName === 'DIV') {
-        // If no image descendant and no non-empty text, remove
         const hasImg = !!child.querySelector('img');
         const hasText = child.textContent.trim().length > 0;
         if (!hasImg && !hasText) {
           child.remove();
         } else {
-          // recursive clean deeper
           cleanEmptyDivs(child);
         }
       }
@@ -18,7 +16,7 @@ export default function decorate(block) {
   }
   cleanEmptyDivs(block);
 
-  // Find or create .imageleftright-image container
+  // Find .imageleftright-image container
   let imgDiv = block.querySelector('.imageleftright-image');
   if (!imgDiv) {
     imgDiv = document.createElement('div');
@@ -26,7 +24,7 @@ export default function decorate(block) {
     block.prepend(imgDiv);
   }
 
-  // Find or create .imageleftright-content container
+  // Find/create .imageleftright-content container
   let contentDiv = block.querySelector('.imageleftright-content');
   if (!contentDiv) {
     contentDiv = document.createElement('div');
@@ -34,10 +32,10 @@ export default function decorate(block) {
     block.append(contentDiv);
   }
 
-  // Move the image (first img found anywhere) into imgDiv
-  const allImgs = block.querySelectorAll('img');
-  if (allImgs.length > 0) {
-    imgDiv.appendChild(allImgs[0]);
+  // Move or find the first img tag for alt handling
+  const img = block.querySelector('img');
+  if (img && !imgDiv.contains(img)) {
+    imgDiv.appendChild(img);
   }
 
   // Move all non-image elements into contentDiv
@@ -46,18 +44,26 @@ export default function decorate(block) {
     if (child !== imgDiv && child !== contentDiv) {
       const relevantNodes = child.querySelectorAll('h1,h2,h3,h4,h5,h6,p,a,button');
       relevantNodes.forEach(n => contentDiv.appendChild(n));
-      // Remove leftover empty containers
       if (child.children.length === 0) {
         child.remove();
       }
     }
   });
 
-  // Find orientation text inside contentDiv and toggle class on block
-  const orientationEl = contentDiv.querySelector('[data-aue-prop="orientation"]');
-  const orientation = orientationEl ? orientationEl.textContent.trim() : '';
+  // --- ALT TEXT HANDLING ---
 
-  if (orientation.toLowerCase() === 'image-right') {
+  // Find altText value and set on img
+  const altP = contentDiv.querySelector('p[data-aue-prop="altText"]');
+  if (img && altP) {
+    img.alt = altP.textContent.trim();
+    altP.remove(); // Remove altText paragraph so it doesn't display in content
+  }
+
+  // Handle orientation from orientation text node in content
+  const orientationEl = contentDiv.querySelector('[data-aue-prop="orientation"]');
+  const orientation = orientationEl ? orientationEl.textContent.trim().toLowerCase() : "";
+
+  if (orientation === 'image-right') {
     block.classList.add('image-right');
   } else {
     block.classList.remove('image-right');
