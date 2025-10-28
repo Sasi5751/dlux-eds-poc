@@ -1,5 +1,5 @@
 export default function decorate(block) {
-  // Recursively remove empty divs, except if they contain images
+  // Remove empty divs recursively, except if they contain images
   function cleanEmptyDivs(parent) {
     const children = [...parent.children];
     children.forEach(child => {
@@ -50,22 +50,21 @@ export default function decorate(block) {
     }
   });
 
-  // --- ALT TEXT HANDLING ---
-
+  // --- ALT TEXT HANDLING & ORIENTATION HIDDEN FIELDS ---
   // Find altText value and set on img
   const altP = contentDiv.querySelector('p[data-aue-prop="altText"]');
   if (img && altP) {
     img.alt = altP.textContent.trim();
-    altP.remove(); // Remove altText paragraph so it doesn't display in content
+    altP.remove();
   }
 
-  // Handle orientation from orientation text node in content
-  const orientationEl = contentDiv.querySelector('[data-aue-prop="orientation"]');
+  // Find orientation, set layout class, and remove orientation paragraph
+  const orientationEl = contentDiv.querySelector('p[data-aue-prop="orientation"]');
   const orientation = orientationEl ? orientationEl.textContent.trim().toLowerCase() : "";
-
   if (orientation === 'image-right') {
     block.classList.add('image-right');
   } else {
     block.classList.remove('image-right');
   }
+  if (orientationEl) orientationEl.remove();
 }
