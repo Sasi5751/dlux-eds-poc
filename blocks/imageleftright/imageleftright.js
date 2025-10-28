@@ -1,62 +1,78 @@
-// /blocks/imageleftright/imageleftright.js
-
 export default function decorate(block) {
-  // Find or create image and content containers
-  let imgDiv = block.querySelector('.imageleftright-image');
-  let contentDiv = block.querySelector('.imageleftright-content');
+  // Cleanup unnecessary empty divs
+  [...block.querySelectorAll('div')].forEach((div) => {
+    if (
+        !div.classList.contains('imageleftright-image') &&
+        !div.classList.contains('imageleftright-content') &&
+        div.children.length === 0 &&
+        div.textContent.trim() === ""
+    ) {
+      div.remove();
+    }
+  });
 
+  // Find/create image container
+  let imgDiv = block.querySelector('.imageleftright-image');
   if (!imgDiv) {
     imgDiv = document.createElement('div');
     imgDiv.className = 'imageleftright-image';
     block.prepend(imgDiv);
   }
+  imgDiv.innerHTML = "";
+
+  // Find image inside nested <picture> or <img>
+  let img = block.querySelector('picture img') || block.querySelector('img');
+  if (img) {
+    const newImg = img.cloneNode(true); // Don't move, clone to avoid breaking original DOM
+    imgDiv.appendChild(newImg);
+  }
+
+  // Find/create content container
+  let contentDiv = block.querySelector('.imageleftright-content');
   if (!contentDiv) {
     contentDiv = document.createElement('div');
     contentDiv.className = 'imageleftright-content';
     block.append(contentDiv);
   }
+  // Wipe previous content
+  contentDiv.innerHTML = "";
 
-  // Clear previous content
-  imgDiv.innerHTML = '';
-  contentDiv.innerHTML = '';
-
-  // Populate image container with img element if image path exists
-  if (block.dataset.desktopImagePath) {
-    const img = document.createElement('img');
-    img.src = block.dataset.desktopImagePath;
-    img.alt = block.dataset.altText || '';
-    img.className = 'cmp-image-left-right__image-img img-fluid'; // match your CSS class naming if needed
-    imgDiv.appendChild(img);
+  // Extract content from <p data-aue-prop="...">
+  function getProp(prop) {
+    const el = block.querySelector(`[data-aue-prop="${prop}"]`);
+    return el ? el.textContent.trim() : "";
   }
 
-  // Populate content container with title, text, and CTA
-  if (block.dataset.title) {
+  const orientation = getProp('orientation');
+  const altText = getProp('altText');
+  const title = getProp('title');
+  const text = getProp('text');
+  const ctaUrl = getProp('textContent_cta');
+  const ctaText = getProp('textContent_ctaText');
+
+  // Compose content
+  if (title) {
     const titleEl = document.createElement('h2');
-    titleEl.textContent = block.dataset.title;
+    titleEl.textContent = title;
     contentDiv.appendChild(titleEl);
   }
-  if (block.dataset.text) {
+  if (text) {
     const textEl = document.createElement('p');
-    textEl.textContent = block.dataset.text;
+    textEl.textContent = text;
     contentDiv.appendChild(textEl);
   }
-  if (block.dataset.textContent_cta && block.dataset.textContent_ctaText) {
-    const cta = document.createElement('a');
-    cta.href = block.dataset.textContent_cta;
-    cta.textContent = block.dataset.textContent_ctaText;
-    cta.className = 'button';
-    contentDiv.appendChild(cta);
+  if (ctaUrl && ctaText) {
+    const ctaEl = document.createElement('a');
+    ctaEl.href = ctaUrl;
+    ctaEl.textContent = ctaText;
+    ctaEl.className = 'button';
+    contentDiv.appendChild(ctaEl);
   }
 
-  // Set layout orientation class on block
-  if (block.dataset.orientation === 'image-right') {
-    block.classList.add('image-right');
+  // Swap orientation
+  if (orientation === "image-right") {
+    block.classList.add("image-right");
   } else {
-    block.classList.remove('image-right');
-  }
-
-  // Optional: handle background color class
-  if (block.dataset.backgroundColor) {
-    block.classList.add(`background-${block.dataset.backgroundColor}`);
+    block.classList.remove("image-right");
   }
 }
