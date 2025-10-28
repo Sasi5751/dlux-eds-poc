@@ -74,3 +74,15 @@
         padding: 1em;
     }
 }
+.imageleftright.block.image-right {
+    flex-direction: row-reverse;
+}
+
+/* Media query remains the same: always column below 900px */
+@media (max-width: 900px) {
+    .imageleftright.block,
+    .imageleftright.block.image-right {
+        flex-direction: column;
+        border-radius: 12px;
+    }
+}

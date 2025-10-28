@@ -15,21 +15,21 @@ export default function decorate(block) {
     block.append(contentDiv);
   }
 
-  // Place the image in imgDiv and the content in contentDiv
+  // Move image and content elements into their containers
   block.querySelectorAll('img').forEach(img => imgDiv.appendChild(img));
   block.querySelectorAll('h1, h2, h3, h4, h5, h6, p, a, button').forEach(el => {
     if (!imgDiv.contains(el)) contentDiv.appendChild(el);
   });
 
-  // Swap the order if layout is image-right
-  const layoutOption = block.classList.contains('image-right') || block.dataset.orientation === 'image-right';
-  if (layoutOption) {
-    if (block.firstElementChild !== contentDiv) {
-      block.insertBefore(contentDiv, imgDiv);
-    }
+  // Read orientation either from class or data attribute
+  const orientation = block.classList.contains('image-right') || block.dataset.orientation === 'image-right';
+
+  // Add or remove class for CSS layout swap
+  if (orientation) {
+    block.classList.add('image-right');
   } else {
-    if (block.firstElementChild !== imgDiv) {
-      block.insertBefore(imgDiv, contentDiv);
-    }
+    block.classList.remove('image-right');
   }
+
+  // No need to reorder DOM elements here, CSS flex handles layout swap cleanly.
 }
