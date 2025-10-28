@@ -1,0 +1,62 @@
+.cta-block {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background: #f7fcfc;
+    border-radius: 16px;
+    padding: 1.5em 2em;
+    box-shadow: 0 1px 8px rgba(0,0,0,0.05);
+    max-width: 900px;
+    margin: 1.5em auto;
+}
+.cta-block-text {
+    flex: 4;
+}
+.cta-block-text h2 {
+    font-size: 1.3em;
+    color: #123c38;
+    margin-bottom: .3em;
+}
+.cta-block-text p {
+    color: #465a5e;
+    font-size: .98em;
+    margin: 0;
+}
+.cta-block-btn-container {
+    flex: 2;
+    display: flex;
+    justify-content: flex-end;
+}
+.cta-block-btn {
+    display: inline-block;
+    background: #123c38;
+    color: #fff;
+    border-radius: 24px;
+    font-weight: 600;
+    font-size: 1em;
+    padding: 0.5em 1.5em;
+    text-decoration: none;
+    transition: background .14s;
+    box-shadow: 0 4px 12px rgba(80,180,168,.06);
+    border: none;
+    outline: none;
+    letter-spacing: .01em;
+}
+.cta-block-btn svg {
+    vertical-align: middle;
+}
+.cta-block-btn:hover {
+    background: #176d6d;
+}
+@media (max-width: 600px) {
+    .cta-block {
+        flex-direction: column;
+        align-items: flex-start;
+        padding: 1.25em 1em;
+    }
+    .cta-block-btn-container {
+        width: 100%;
+        margin-top: 1em;
+        justify-content: flex-start;
+    }
+}
