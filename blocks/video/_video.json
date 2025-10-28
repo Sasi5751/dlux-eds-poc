@@ -11,9 +11,6 @@
             "model": "video",
             "videoUrl": "https://www.youtube.com/embed/2_fXhIOFb3Q",
             "videoAlt": "Sample video alt text",
-            "textContent_text": "<h2>Enter a title</h2><p>...And body text here!</p>",
-            "textContent_cta": "/",
-            "textContent_ctaText": "Click me!"
           }
         }
       }
@@ -54,25 +51,6 @@
           "label": "Video alt text",
           "valueType": "string",
           "required": true
-        },
-        {
-          "component": "richtext",
-          "name": "textContent_text",
-          "label": "Text",
-          "valueType": "string",
-          "required": true
-        },
-        {
-          "component": "aem-content",
-          "name": "textContent_cta",
-          "label": "CTA",
-          "valueType": "string"
-        },
-        {
-          "component": "text",
-          "name": "textContent_ctaText",
-          "label": "CTA label",
-          "valueType": "string"
         }
       ]
     }
