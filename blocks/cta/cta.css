@@ -1,62 +1,98 @@
-.cta-block {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
+.cta-wrapper {
+    max-width: 900px;
+    margin: 2em auto;
+}
+
+.cta.block {
     background: #f7fcfc;
     border-radius: 16px;
-    padding: 1.5em 2em;
     box-shadow: 0 1px 8px rgba(0,0,0,0.05);
-    max-width: 900px;
-    margin: 1.5em auto;
+    padding: 1.5em 2em;
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: space-between;
 }
-.cta-block-text {
-    flex: 4;
+
+.cta.block > div {
+    flex: 1 1 66%;
+    display: flex;
+    align-items: center;
 }
-.cta-block-text h2 {
+
+.cta.block > div:nth-child(3) {
+    flex: 1 1 30%;
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+}
+
+[data-aue-prop="text"] h1,
+[data-aue-prop="text"] h2 {
     font-size: 1.3em;
     color: #123c38;
-    margin-bottom: .3em;
+    margin-bottom: .25em;
+    font-weight: 600;
 }
-.cta-block-text p {
+
+[data-aue-prop="text"] p {
     color: #465a5e;
     font-size: .98em;
     margin: 0;
 }
-.cta-block-btn-container {
-    flex: 2;
-    display: flex;
-    justify-content: flex-end;
-}
-.cta-block-btn {
+
+.button-container,
+.button-container a.button {
     display: inline-block;
+}
+
+.button-container a.button {
     background: #123c38;
     color: #fff;
     border-radius: 24px;
     font-weight: 600;
     font-size: 1em;
-    padding: 0.5em 1.5em;
+    padding: 0.55em 1.5em .55em 2.2em;
     text-decoration: none;
     transition: background .14s;
     box-shadow: 0 4px 12px rgba(80,180,168,.06);
     border: none;
     outline: none;
+    position: relative;
     letter-spacing: .01em;
+    margin-left: 8px;
 }
-.cta-block-btn svg {
-    vertical-align: middle;
+
+.button-container a.button::before {
+    content: '';
+    display: inline-block;
+    background: url('data:image/svg+xml;utf8,<svg width="18" height="18" viewBox="0 0 24 24" fill="white" xmlns="http://www.w3.org/2000/svg"><path d="M21 17.5a2.5 2.5 0 0 1-2.65 2.5 17.984 17.984 0 0 1-7.83-2.91 18.16 18.16 0 0 1-5.31-5.31A17.984 17.984 0 0 1 4 5.65 2.5 2.5 0 0 1 6.5 3h2A2.5 2.5 0 0 1 11 5.65v1A2.5 2.5 0 0 1 10.65 7l-1.2 1.2a15.159 15.159 0 0 0 5.31 5.31l1.2-1.2A2.5 2.5 0 0 1 17.35 13h1A2.5 2.5 0 0 1 21 15.5v2z" /></svg>') no-repeat center center;
+    width: 28px;
+    height: 28px;
+    position: absolute;
+    left: -2px;
+    top: 50%;
+    transform: translateY(-50%);
 }
-.cta-block-btn:hover {
+
+.button-container a.button:hover {
     background: #176d6d;
 }
-@media (max-width: 600px) {
-    .cta-block {
+
+@media (max-width: 700px) {
+    .cta.block {
         flex-direction: column;
-        align-items: flex-start;
+        align-items: stretch;
         padding: 1.25em 1em;
     }
-    .cta-block-btn-container {
-        width: 100%;
-        margin-top: 1em;
+    .cta.block > div, .cta.block > div:nth-child(3) {
         justify-content: flex-start;
+        margin-top: 1em;
+        width: 100%;
+        flex: 1 1 100%;
+    }
+    .button-container {
+        margin-top: 1em;
+        width: 100%;
     }
 }
