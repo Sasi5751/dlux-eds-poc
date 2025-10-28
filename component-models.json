@@ -205,22 +205,6 @@
         ]
       },
       {
-        "component": "select",
-        "name": "backgroundColor",
-        "label": "Background Color",
-        "valueType": "string",
-        "options": [
-          {
-            "name": "Light",
-            "value": "light"
-          },
-          {
-            "name": "Dark",
-            "value": "dark"
-          }
-        ]
-      },
-      {
         "component": "reference",
         "name": "desktopImagePath",
         "label": "Image (Desktop)",

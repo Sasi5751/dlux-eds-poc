@@ -172,8 +172,7 @@
                   "textContent_text": "<h2>Enter a title</h2><p>...And body text here!</p>",
                   "textContent_cta": "/",
                   "textContent_ctaText": "Click me!",
-                  "orientation": "image-left",
-                  "backgroundColor": "light"
+                  "orientation": "image-left"
                 }
               }
             }
