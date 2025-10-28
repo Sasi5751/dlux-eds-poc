@@ -16,8 +16,8 @@
             "text": "We know there’s a lot to think about when it comes to planning a funeral. Our free funeral planner can help guide you through the steps to make it easier for you.",
             "ctaUrl": "/download-plan",
             "ctaText": "Download funeral plan",
-            "orientation": "image-left", // Possible values: image-left, image-right
-            "backgroundColor": "light", // Possible values: light, dark
+            "orientation": "image-left",
+            "backgroundColor": "light",
             "top": "false",
             "bottom": "false"
           }

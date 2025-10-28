@@ -186,6 +186,96 @@
     ]
   },
   {
+    "id": "imageleftright",
+    "fields": [
+      {
+        "component": "select",
+        "name": "orientation",
+        "label": "Layout (Image Left/Right)",
+        "valueType": "string",
+        "options": [
+          {
+            "name": "Image Left",
+            "value": "image-left"
+          },
+          {
+            "name": "Image Right",
+            "value": "image-right"
+          }
+        ]
+      },
+      {
+        "component": "select",
+        "name": "backgroundColor",
+        "label": "Background Color",
+        "valueType": "string",
+        "options": [
+          {
+            "name": "Light",
+            "value": "light"
+          },
+          {
+            "name": "Dark",
+            "value": "dark"
+          }
+        ]
+      },
+      {
+        "component": "reference",
+        "name": "desktopImagePath",
+        "label": "Image (Desktop)",
+        "valueType": "string"
+      },
+      {
+        "component": "reference",
+        "name": "tabletImagePath",
+        "label": "Image (Tablet)",
+        "valueType": "string"
+      },
+      {
+        "component": "text",
+        "name": "altText",
+        "label": "Image Alt Text",
+        "valueType": "string"
+      },
+      {
+        "component": "text",
+        "name": "title",
+        "label": "Title",
+        "valueType": "string"
+      },
+      {
+        "component": "richtext",
+        "name": "text",
+        "label": "Text"
+      },
+      {
+        "component": "aem-content",
+        "name": "ctaUrl",
+        "label": "CTA URL",
+        "valueType": "string"
+      },
+      {
+        "component": "text",
+        "name": "ctaText",
+        "label": "CTA Text",
+        "valueType": "string"
+      },
+      {
+        "component": "checkbox",
+        "name": "top",
+        "label": "Remove Top Padding",
+        "valueType": "boolean"
+      },
+      {
+        "component": "checkbox",
+        "name": "bottom",
+        "label": "Remove Bottom Padding",
+        "valueType": "boolean"
+      }
+    ]
+  },
+  {
     "id": "teaser",
     "fields": [
       {
