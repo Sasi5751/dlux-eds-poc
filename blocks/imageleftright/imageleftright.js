@@ -1,20 +1,27 @@
 export default function decorate(block) {
-  block.classList.add('sidebyside-layout');
-  const swap = block.classList.contains('swap');
+  // Apply orientation and background color classes
+  const orientation = block.dataset.orientation || 'image-left';
+  const backgroundColor = block.dataset.backgroundColor || 'light';
+  const top = block.dataset.top === 'true';
+  const bottom = block.dataset.bottom === 'true';
 
-  // Find and mark children
-  const imageDiv = block.querySelector('img')?.closest('div');
-  const contentDiv = block.querySelector('h2, h3, h4, h5, h6')?.closest('div');
+  block.classList.add('cmp-image-left-right-wrapper');
+  block.classList.add(`cmp-image-left-right-no-top-padding-${top ? 'yes' : 'no'}`);
+  block.classList.add(`cmp-image-left-right-no-bottom-padding-${bottom ? 'yes' : 'no'}`);
 
-  if (imageDiv) imageDiv.classList.add('sidebyside-image');
-  if (contentDiv) contentDiv.classList.add('sidebyside-content');
+  // Find main container
+  const container = block.querySelector('.cmp-image-left-right') || document.createElement('div');
+  container.className = `cmp-image-left-right gp-radius-container cmp-image-left-right--${orientation} cmp-image-left-right--${backgroundColor}`;
 
-  // Force correct order
-  if (swap && imageDiv && contentDiv) {
-    block.prepend(contentDiv);
-    block.append(imageDiv);
-  } else if (imageDiv && contentDiv) {
-    block.prepend(imageDiv);
-    block.append(contentDiv);
-  }
+  // Move image and content into the container
+  const imgDiv = block.querySelector('.cmp-image-left-right__image') || document.createElement('div');
+  imgDiv.className = 'cmp-image-left-right__image img-fluid';
+
+  const contentDiv = block.querySelector('.cmp-image-left-right__content') || document.createElement('div');
+  contentDiv.className = 'cmp-image-left-right__content';
+
+  container.appendChild(imgDiv);
+  container.appendChild(contentDiv);
+  block.innerHTML = '';
+  block.appendChild(container);
 }
