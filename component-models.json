@@ -112,6 +112,53 @@
     ]
   },
   {
+    "id": "article",
+    "fields": [
+      {
+        "component": "reference",
+        "name": "image",
+        "label": "Article Image",
+        "valueType": "string"
+      },
+      {
+        "component": "text",
+        "name": "imageAlt",
+        "label": "Image Alt Text",
+        "valueType": "string"
+      },
+      {
+        "component": "text",
+        "name": "badgeText",
+        "label": "Badge Text",
+        "valueType": "string"
+      },
+      {
+        "component": "text",
+        "name": "date",
+        "label": "Publish Date",
+        "valueType": "string"
+      },
+      {
+        "component": "text",
+        "name": "readTime",
+        "label": "Read Duration",
+        "valueType": "string"
+      },
+      {
+        "component": "text",
+        "name": "headline",
+        "label": "Headline",
+        "valueType": "string"
+      },
+      {
+        "component": "aem-content",
+        "name": "url",
+        "label": "Article URL",
+        "valueType": "string"
+      }
+    ]
+  },
+  {
     "id": "card",
     "fields": [
       {
